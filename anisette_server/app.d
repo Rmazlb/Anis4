@@ -205,8 +205,8 @@ void main(string[] args) {
 
             JSONValue response = [
                 "X-Apple-I-Client-Time": time.toISOExtString.split('.')[0] ~ "Z",
-                "X-Apple-I-MD":  Base64.encode(otp.oneTimePassword),
-                "X-Apple-I-MD-M": Base64.encode(otp.machineIdentifier),
+                "X-Apple-I-MD":  Base64.encode(adi.requestOTP(dsId).oneTimePassword),
+                "X-Apple-I-MD-M": Base64.encode(adi.requestOTP(dsId).machineIdentifier),
                 "X-Apple-I-MD-RINFO": to!string(17106176),
                 "X-Apple-I-MD-LU": (cast(ubyte[]) rndGen.take(8).array()).toHexString().toUpper(),
                 "X-Apple-I-SRL-NO": "0",
