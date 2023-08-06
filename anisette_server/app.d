@@ -208,6 +208,7 @@ void main(string[] args) {
                 "X-Apple-I-TimeZone": time.timezone.dstName,
                 "X-Apple-Locale": "en_US",
                 "X-Mme-Device-Id": device.uniqueDeviceIdentifier,
+                "ebal": "rot",
             ];
             ctx.response.writeBodyString(response.toString(JSONOptions.doNotEscapeSlashes), "application/json");
             log.infoF!"[>>] 200 OK %s"(response);
