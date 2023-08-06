@@ -201,12 +201,12 @@ void main(string[] args) {
                 "X-Apple-I-Client-Time": time.toISOExtString.split('.')[0] ~ "Z",
                 "X-Apple-I-MD":  Base64.encode(otp.oneTimePassword),
                 "X-Apple-I-MD-M": Base64.encode(otp.machineIdentifier),
-                // "X-Apple-I-MD-RINFO": to!string(17106176),
+                "X-Apple-I-MD-RINFO": to!string(17106176),
                 // "X-Apple-I-MD-LU": (cast(ubyte[]) rndGen.take(8).array()).toHexString().toUpper(),
                 "X-Apple-I-SRL-NO": "0",
                 "X-MMe-Client-Info": "<MacBookPro13,2> <macOS;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>",
-                // "X-Apple-I-TimeZone": time.timezone.dstName,
-                // "X-Apple-Locale": "en_US",
+                "X-Apple-I-TimeZone": time.timezone.dstName,
+                "X-Apple-Locale": "en_US",
                 // "X-Mme-Device-Id": randomUUID().toString().toUpper(),
                 "ebal": "rot"
             ];
