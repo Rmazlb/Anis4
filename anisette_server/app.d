@@ -172,7 +172,7 @@ void main(string[] args) {
             return;
         }
 
-        if (req.url == "/newdivice" {
+        if (req.url == "/newdivice") {
 
             log.info("[>>] 200 OK newdevice");
             ctx.response.setStatus(200);
