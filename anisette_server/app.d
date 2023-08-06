@@ -172,6 +172,15 @@ void main(string[] args) {
             return;
         }
 
+        if (req.url == "/newdivice" {
+
+            log.info("[>>] 200 OK newdevice");
+            ctx.response.setStatus(200);
+            
+            return;
+            
+        }
+
         try {
             import std.datetime.systime;
             import std.datetime.timezone;
