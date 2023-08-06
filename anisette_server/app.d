@@ -109,25 +109,25 @@ void main(string[] args) {
     }
 
     // Initializing ADI and machine if it has not already been made.
-    device = new Device(rememberMachine ? configurationPath.buildPath("device.json") : "/dev/null");
+    device = new Device("/dev/null");
     adi = new ADI(libraryPath);
     adi.provisioningPath = configurationPath;
 
-    if (!device.initialized) {
-        log.info("Creating machine... ");
+    // if (!device.initialized) {
+    //     log.info("Creating machine... ");
 
-        import std.digest;
-        import std.random;
-        import std.range;
-        import std.uni;
-        import std.uuid;
-        device.serverFriendlyDescription = "<MacBookPro13,2> <macOS;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>";
-        device.uniqueDeviceIdentifier = randomUUID().toString().toUpper();
-        device.adiIdentifier = (cast(ubyte[]) rndGen.take(2).array()).toHexString().toLower();
-        device.localUserUUID = (cast(ubyte[]) rndGen.take(8).array()).toHexString().toUpper();
+    //     import std.digest;
+    //     import std.random;
+    //     import std.range;
+    //     import std.uni;
+    //     import std.uuid;
+    //     device.serverFriendlyDescription = "<MacBookPro13,2> <macOS;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>";
+    //     device.uniqueDeviceIdentifier = randomUUID().toString().toUpper();
+    //     device.adiIdentifier = (cast(ubyte[]) rndGen.take(2).array()).toHexString().toLower();
+    //     device.localUserUUID = (cast(ubyte[]) rndGen.take(8).array()).toHexString().toUpper();
 
-        log.info("Machine creation done!");
-    }
+    //     log.info("Machine creation done!");
+    // }
 
     enum dsId = -2;
 
@@ -202,12 +202,12 @@ void main(string[] args) {
                 "X-Apple-I-MD":  Base64.encode(otp.oneTimePassword),
                 "X-Apple-I-MD-M": Base64.encode(otp.machineIdentifier),
                 "X-Apple-I-MD-RINFO": to!string(17106176),
-                "X-Apple-I-MD-LU": device.localUserUUID,
+                "X-Apple-I-MD-LU": (cast(ubyte[]) rndGen.take(8).array()).toHexString().toUpper();,
                 "X-Apple-I-SRL-NO": "0",
-                "X-MMe-Client-Info": device.serverFriendlyDescription,
+                "X-MMe-Client-Info": "<MacBookPro13,2> <macOS;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>";,
                 "X-Apple-I-TimeZone": time.timezone.dstName,
                 "X-Apple-Locale": "en_US",
-                "X-Mme-Device-Id": device.uniqueDeviceIdentifier,
+                "X-Mme-Device-Id": randomUUID().toString().toUpper();,
                 "ebal": "rot",
             ];
             ctx.response.writeBodyString(response.toString(JSONOptions.doNotEscapeSlashes), "application/json");
