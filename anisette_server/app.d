@@ -207,7 +207,7 @@ void main(string[] args) {
                 "X-MMe-Client-Info": "<MacBookPro13,2> <macOS;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>",
                 "X-Apple-I-TimeZone": time.timezone.dstName,
                 "X-Apple-Locale": "en_US",
-                // "X-Mme-Device-Id": randomUUID().toString().toUpper(),
+                "X-Mme-Device-Id": randomUUID().toString().toUpper(),
                 "ebal": "rot"
             ];
             ctx.response.writeBodyString(response.toString(JSONOptions.doNotEscapeSlashes), "application/json");
