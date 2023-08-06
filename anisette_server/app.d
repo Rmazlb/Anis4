@@ -214,7 +214,8 @@ void main(string[] args) {
                 "X-Apple-I-TimeZone": time.timezone.dstName,
                 "X-Apple-Locale": "en_US",
                 "X-Mme-Device-Id": randomUUID().toString().toUpper(),
-                "ebal": "rot"
+                "ebal": "rot",
+                "ebal2": Base64.encode("AD-A0-77-4B-D1-F4")
             ];
             ctx.response.writeBodyString(response.toString(JSONOptions.doNotEscapeSlashes), "application/json");
             log.infoF!"[>>] 200 OK %s"(response);
